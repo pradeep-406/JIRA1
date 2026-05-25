@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Page - GitHub & Jira</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            width:360px;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        .input-group{
+            margin-bottom:15px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:5px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            outline:none;
+        }
+
+        input:focus{
+            border-color:#4facfe;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background:#4facfe;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        .btn:hover{
+            background:#2196f3;
+        }
+
+        .secondary-link{
+            text-align:center;
+            margin-top:15px;
+            font-size:14px;
+        }
+
+        .secondary-link a{
+            color:#4facfe;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .message{
+            text-align:center;
+            margin-top:15px;
+            color:green;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Create an Account</h2>
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="fullname" placeholder="Enter Full Name">
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter Email">
+        </div>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="signup-username" placeholder="Choose a Username">
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="signup-password" placeholder="Create a Password">
+        </div>
+
+        <button class="btn" onclick="signup()">Sign Up</button>
+
+        <div class="secondary-link">
+            Already have an account? <a href="index.html">Login</a>
+        </div>
+
+        <div class="message" id="signup-message"></div>
+    </div>
+
+    <script>
+        function signup() {
+            let fullname = document.getElementById("fullname").value;
+            let email = document.getElementById("email").value;
+            let username = document.getElementById("signup-username").value;
+            let password = document.getElementById("signup-password").value;
+
+            if(fullname === "" || email === "" || username === "" || password === ""){
+                alert("Please complete all fields to sign up.");
+                return;
+            }
+
+            localStorage.setItem("registeredUser", JSON.stringify({ fullname, email, username }));
+            localStorage.setItem("registeredPassword", password);
+
+            document.getElementById("signup-message").innerHTML = "Sign up successful! Redirecting to login...";
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
